@@ -4,6 +4,8 @@ import android.view.View
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import ru.nvg_soft.counterpick.R
 import ru.nvg_soft.counterpick.models.Hero
 import java.util.*
@@ -33,7 +35,18 @@ class HeroAdapter: RecyclerView.Adapter<HeroAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        private val tvHeroTitle:TextView = itemView.findViewById(R.id.tvHeroTitle)
+        private val tvHeroAttackType:TextView = itemView.findViewById(R.id.tvHeroAttackType)
+        private val ivAvatar: ImageView = itemView.findViewById(R.id.ivAvatar)
+
         fun bind(model: Hero){
+            tvHeroTitle.text = model.title
+
+            if (model.attackType == 0){
+                tvHeroAttackType.text = itemView.context.getString(R.string.attack_type_melee)
+            }else{
+                tvHeroAttackType.text = itemView.context.getString(R.string.attack_type_ranged)
+            }
 
         }
     }
