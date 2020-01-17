@@ -2,29 +2,33 @@ package ru.nvg_soft.counterpick.presenters
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import ru.nvg_soft.counterpick.models.Hero
+import ru.nvg_soft.domain.models.Hero
 import ru.nvg_soft.counterpick.views.HeroListView
 import android.os.Handler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import ru.nvg_soft.domain.repositories.implementations.HeroRepositoryImpl
 import kotlin.concurrent.thread
 
 @InjectViewState
 class HeroListPresenter: MvpPresenter<HeroListView>() {
+    private val heroesRepositoryImpl =HeroRepositoryImpl()
     fun fetchHeroes(){
         viewState.presentLoading()
-
-        val handler = Handler()
-        thread {
-            Thread.sleep(3000)
-
-            val mockData =ArrayList<Hero>()
-            mockData.add(Hero(id = 0, title = "Anti-Mage", icon = "", attackType = 0))
-            mockData.add(Hero(id = 1, title = "Dark Willow", icon = "", attackType = 1))
-            mockData.add(Hero(id = 2, title = "Lion", icon = "", attackType = 1))
-            handler.post {
-                viewState.presentHeroes(data = mockData)
+        GlobalScope.launch ( Dispatchers.IO){
+            try {
+                val heroes = heroesRepositoryImpl.fechHeroes().await()
+                withContext(Dispatchers.Main){
+                    viewState.presentHeroes( data = heroes)
+                }
+            } catch (e:Exception){
+                e.printStackTrace()
             }
-
         }
+
+
 
 
 

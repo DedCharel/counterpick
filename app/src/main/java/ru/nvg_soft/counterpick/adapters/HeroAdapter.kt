@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import ru.nvg_soft.counterpick.R
-import ru.nvg_soft.counterpick.models.Hero
+import ru.nvg_soft.domain.models.Hero
 import java.util.*
 
 class HeroAdapter: RecyclerView.Adapter<HeroAdapter.ViewHolder>() {

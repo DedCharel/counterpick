@@ -1,6 +1,5 @@
 package ru.nvg_soft.counterpick.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -9,7 +8,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.nvg_soft.counterpick.R
 import ru.nvg_soft.counterpick.adapters.HeroAdapter
-import ru.nvg_soft.counterpick.models.Hero
+import ru.nvg_soft.domain.models.Hero
 import ru.nvg_soft.counterpick.presenters.HeroListPresenter
 import ru.nvg_soft.counterpick.views.HeroListView
 
