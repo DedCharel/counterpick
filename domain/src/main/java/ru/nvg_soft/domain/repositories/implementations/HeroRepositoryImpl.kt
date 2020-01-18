@@ -7,7 +7,7 @@ import ru.nvg_soft.domain.models.Hero
 
 
 class HeroRepositoryImpl {
-    suspend fun fechHeroes(): Deferred<List<Hero>> {
+     fun fechHeroes(): Deferred<List<Hero>> {
         Thread.sleep(3000)
 
         val mockData =ArrayList<Hero>()
