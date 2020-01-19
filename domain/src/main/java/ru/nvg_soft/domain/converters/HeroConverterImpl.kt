@@ -5,7 +5,7 @@ import ru.nvg_soft.domain.models.Hero
 
 class HeroConverterImpl {
     fun fromApiToUI(model:HeroApi):Hero{
-        return Hero(id = model.id, title = model.name,
+        return Hero(id = model.id, title = model.name.replace("npc_dota_hero_",""),
             attackType = if (model.attack_type == "Melee"){
                 0} else{1},icon = "")
     }
