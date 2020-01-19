@@ -9,12 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ru.nvg_soft.domain.converters.HeroConverterImpl
 import ru.nvg_soft.domain.repositories.implementations.HeroRepositoryImpl
 import kotlin.concurrent.thread
 
 @InjectViewState
 class HeroListPresenter: MvpPresenter<HeroListView>() {
-    private val heroesRepositoryImpl =HeroRepositoryImpl()
+    private val heroesRepositoryImpl =HeroRepositoryImpl(heroConverter = HeroConverterImpl())
     fun fetchHeroes(){
         viewState.presentLoading()
         GlobalScope.launch ( Dispatchers.IO){
